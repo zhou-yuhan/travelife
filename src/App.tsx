@@ -4,7 +4,6 @@ import './App.css';
 import { Appbar } from './appbar';
 import { Grid, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import { themeDefault, themeGanyu, themeGrey } from './theme';
 import { makeStyles } from '@mui/styles';
@@ -34,11 +33,11 @@ function App() {
                     resizerSize={10}
                 >
                     <Pane minSize={'10%'} maxSize='90%'>
-                        <Paper sx={{ height: '100%' }} variant='outlined'>
+                        <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3}>
                             pane1
                         </Paper>
                     </Pane>
-                    <Paper sx={{ height: '100%' }} variant="outlined">
+                    <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3}>
                         pane2
                     </Paper>
                 </SplitPane>

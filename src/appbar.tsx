@@ -9,6 +9,8 @@ import { styled, alpha } from '@mui/material/styles';
 import * as Themes from './theme';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import TuneIcon from '@mui/icons-material/Tune';
+import InfoIcon from '@mui/icons-material/Info';
 
 const useStyles = makeStyles({
     root: {
@@ -168,18 +170,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export const Appbar = () => {
     const classes = useStyles();
     return (
-        <AppBar position="sticky" className={classes.root} enableColorOnDark>
+        <AppBar position="sticky" className={classes.root} enableColorOnDark sx={{ mb: 1 }}>
             <Toolbar>
-                {/* <TravelifeMenu /> */}
+                <IconButton
+                    size="large"
+                    edge="start" color="secondary"
+                >
+                    <InfoIcon />
+                </IconButton>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    Travel Life
+                </Typography>
                 <IconButton
                     size="large"
                     edge="start" color="secondary"
                 >
                     <SettingsIcon />
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Travel Life
-                </Typography>
+                <IconButton
+                    size="large"
+                    edge="start" color="secondary"
+                >
+                    <TuneIcon />
+                </IconButton>
                 <Search>
                     <SearchIconWrapper>
                         <SearchIcon />
