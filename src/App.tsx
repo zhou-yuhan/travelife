@@ -9,6 +9,8 @@ import { themeDefault, themeGanyu, themeGrey } from './theme';
 import { makeStyles } from '@mui/styles';
 import SplitPane, { Pane } from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css'
+import { GeoMap } from './geomap';
+import { TripBoard } from './tripboard';
 
 function App() {
     const [sizes, setSizes] = useState([
@@ -34,11 +36,12 @@ function App() {
                 >
                     <Pane minSize={'10%'} maxSize='90%'>
                         <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3}>
-                            pane1
+                            <GeoMap />
                         </Paper>
                     </Pane>
-                    <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3}>
-                        pane2
+
+                    <Paper sx={{ width: '97%', height: '99%', mx: 1, pt: 0.1, pl: 3}} style={{overflowY: 'scroll'}} elevation={3}>
+                        <TripBoard />
                     </Paper>
                 </SplitPane>
             </Box>
