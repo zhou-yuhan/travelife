@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Markdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
 export const TripBoard = () => {
     const filePath = './example.md';
@@ -20,6 +21,6 @@ export const TripBoard = () => {
     }, [filePath]);
 
     return (
-        <Markdown>{markdownText}</Markdown>
+        <Markdown rehypePlugins={[rehypeRaw]}>{markdownText}</Markdown>
     )
 }

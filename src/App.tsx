@@ -35,12 +35,17 @@ function App() {
                     resizerSize={10}
                 >
                     <Pane minSize={'10%'} maxSize='90%'>
-                        <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3}>
+                        <Paper sx={{ width: '99%', height: '99%', mx: 1 }} elevation={3} 
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                        }}>
                             <GeoMap />
                         </Paper>
                     </Pane>
 
-                    <Paper sx={{ width: '97%', height: '99%', mx: 1, pt: 0.1, pl: 3}} style={{overflowY: 'scroll'}} elevation={3}>
+                    <Paper sx={{ width: '96%', height: '99%', mx: 1, pt: 0.1, px: 3 }} style={{ overflowY: 'scroll' }} elevation={3}>
                         <TripBoard />
                     </Paper>
                 </SplitPane>

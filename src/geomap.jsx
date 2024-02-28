@@ -1,18 +1,42 @@
 import { ComposableMap, Geographies, Geography, ZoomableGroup, Marker } from "react-simple-maps";
+import { ThemeProvider } from '@mui/material/styles';
+import { themeDefault, themeGanyu, themeGrey } from './theme';
+import { styled, alpha } from '@mui/material/styles';
 
+const StyledGeography = styled(Geography)(({ theme }) => ({
+    fill: theme.palette.secondary.main,
+    stroke: theme.palette.primary.light,
+    strokeWidth: 0.3,
+    pressed: "none",
+    '&:hover': {
+        fill: theme.palette.primary.main
+    },
+}))
+
+const projectionChina = {
+    center: [103.8342, 36.0614], // The geometrical center of China is the city of Lanzhou, 103.8342 E, 36.0614 N
+    scale: 500
+}
+
+const projectionWorld = {
+    center: [0, 0],
+}
 
 export const GeoMap = () => {
     return (
-        <ComposableMap>
-            <ZoomableGroup center={[0, 0]} zoom={1}>
-                <Geographies geography="/world.json">
+        <ComposableMap
+            projection="geoMercator"
+            projectionConfig={projectionChina}
+        >
+            <ZoomableGroup zoom={1} maxZoom={20}>
+                <Geographies geography="/china.json">
                     {({ geographies }) =>
                         geographies.map((geo) => (
-                            <Geography key={geo.rsmKey} geography={geo} />
+                            <StyledGeography key={geo.rsmKey} geography={geo} />
                         ))
                     }
                 </Geographies>
-                <Marker coordinates={[0, 0]}>
+                <Marker coordinates={projectionChina.center}>
                     <g
                         fill="none"
                         stroke="#FF5533"
