@@ -11,6 +11,13 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import TuneIcon from '@mui/icons-material/Tune';
 import InfoIcon from '@mui/icons-material/Info';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogActions from "@mui/material/DialogActions";
+import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
 
 const useStyles = makeStyles({
     root: {
@@ -166,18 +173,58 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+interface InfoDiaglogProps {
+    infoOpen: boolean;
+    onClose: () => void;
+}
+
+function InfoDiaglog(props: InfoDiaglogProps) {
+    const { infoOpen, onClose } = props;
+    const handleClose = () => {
+        onClose();
+    };
+    return (
+        <Dialog open={infoOpen} onClose={handleClose}>
+            <DialogTitle>Travel Life</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Let Google help apps determine location. This means sending anonymous
+                    location data to Google, even when no apps are running.
+                </DialogContentText>
+            </DialogContent>
+            <Box sx={{ display: "flex", justifyContent: "center" }} pb={1}>
+                <DialogActions >
+                    <Button onClick={handleClose} variant="contained">Start Travelife</Button>
+                </DialogActions>
+            </Box>
+        </Dialog>
+    )
+}
+
 
 export const Appbar = () => {
     const classes = useStyles();
+    const [infoOpen, setInfoOpen] = React.useState(false);
+
+    const handleInfoOpen = () => {
+        setInfoOpen(true);
+    };
+
+    const handleInfoClose = () => {
+        setInfoOpen(false);
+    };
+
     return (
         <AppBar position="sticky" className={classes.root} enableColorOnDark sx={{ mb: 1 }}>
             <Toolbar>
                 <IconButton
                     size="large"
                     edge="start" color="secondary"
+                    onClick={handleInfoOpen}
                 >
                     <InfoIcon />
                 </IconButton>
+                <InfoDiaglog infoOpen={infoOpen} onClose={handleInfoClose} />
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Travel Life
                 </Typography>

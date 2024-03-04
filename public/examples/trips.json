@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Trip to the West",
+        "date": "2023-01-01",
+        "coordinates": [
+            103.8342,
+            36.0614
+        ],
+        "location": "Lanzhou",
+        "tags": [
+            "Travel",
+            "Business"
+        ],
+        "notes": "examples/trip1.md"
+    },
+    {
+        "title":"Academic Conference",
+        "date": "2023-05-01",
+        "coordinates": [
+            116.4074,
+            39.9042
+        ],
+        "location": "Beijing",
+        "tags": [
+            "Conference"
+        ],
+        "notes": "examples/trip2.md"
+    }
+]
