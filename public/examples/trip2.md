@@ -1,4 +1,4 @@
-# Example2
+# Example 2
 
 ## Time
 
@@ -6,8 +6,8 @@
 
 ## Title
 
-<img src="./examples/image/pic1.jpeg" width="49%">
+<img src="./examples/image/pic1.jpeg" height="49%">
 
-<img src="./examples/image/pic3.jpeg" width="49%">
+<img src="./examples/image/pic3.jpeg" height="49%">
 
 more words

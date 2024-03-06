@@ -28,15 +28,6 @@ const HtmlTooltip = styled(({ className, ...props }) => (
     },
 }));
 
-const projectionChina = {
-    center: [103.8342, 36.0614], // The geometrical center of China is the city of Lanzhou, 103.8342 E, 36.0614 N
-    scale: 500
-}
-
-const projectionWorld = {
-    center: [0, 0],
-}
-
 const TripMarkers = ({ changeFilePath, markerProps }) => {
     function markerHover(event) {
         var id = parseInt(event.target.id.split('-')[1])
@@ -149,14 +140,14 @@ const TripMarkers = ({ changeFilePath, markerProps }) => {
 }
 
 
-export const GeoMap = ({ changeFilePath, markerProps }) => {
+export const GeoMap = ({ changeFilePath, markerProps, geoConfig }) => {
     return (
         <ComposableMap
-            projection="geoMercator"
-            projectionConfig={projectionChina}
+            projection={geoConfig.projection}
+            projectionConfig={{center: geoConfig.center, scale: geoConfig.scale}}
         >
             <ZoomableGroup zoom={1} maxZoom={20}>
-                <Geographies geography="/china.json">
+                <Geographies geography={geoConfig.filepath}>
                     {({ geographies }) => (
                         <>
                             {geographies.map((geo) => (

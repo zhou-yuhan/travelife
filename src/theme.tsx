@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme, Theme } from "@mui/material";
 
 export const themeDefault = createTheme({
     palette: {
@@ -79,3 +79,31 @@ export const themeZhongli = createTheme({
         },
     },
 })
+
+export interface themeConfig {
+    name: string;
+    theme: Theme;
+}
+
+export const themes = [
+    // {
+    //     name: 'Default',
+    //     theme: themeDefault
+    // },
+    // {
+    //     name: 'Grey',
+    //     theme: themeGrey
+    // },
+    {
+        name: 'Ganyu',
+        theme: themeGanyu
+    },
+    {
+        name: 'Paimong',
+        theme: themePaimong
+    },
+    {
+        name: 'Zhongli',
+        theme: themeZhongli
+    }
+]

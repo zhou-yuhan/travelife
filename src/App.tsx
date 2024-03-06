@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Appbar } from './appbar';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Paper, Theme } from '@mui/material';
 import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import { themeDefault, themeGanyu, themeGrey } from './theme';
@@ -11,6 +11,7 @@ import SplitPane, { Pane } from 'split-pane-react';
 import 'split-pane-react/esm/themes/default.css'
 import { GeoMap } from './geomap';
 import { TripBoard } from './tripboard';
+import { GeoConfig, geoSettings } from './appbar';
 
 
 interface TripMetaData {
@@ -49,6 +50,8 @@ function App() {
     ]);
 
     const [markerProps, setMarkerProps] = useState<Array<MarkerProps>>(Array<MarkerProps>());
+    const [geoConfig, setGeoConfig] = useState<GeoConfig>(geoSettings[1]); // default China
+    const [paletteConfig, setPaletteConfig] = useState<Theme>(themeGanyu);
 
     useEffect(() => {
         const fetchTripMeta = async () => {
@@ -75,13 +78,16 @@ function App() {
     // console.log(markerProps);
 
     return (
-        <ThemeProvider theme={themeGanyu}>
+        <ThemeProvider theme={paletteConfig}>
             <Box
                 sx={{
                     width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column'
                 }}
             >
-                <Appbar />
+                <Appbar 
+                    handleGeoConfigChange={(value: GeoConfig) => { setGeoConfig(value); }} 
+                    handlePaletteConfigChange={(value: Theme) => { setPaletteConfig(value); }}
+                />
                 <SplitPane
                     sashRender={() => null}
                     split='vertical'
@@ -96,7 +102,7 @@ function App() {
                                 justifyContent: "center",
                                 flexDirection: "column",
                             }}>
-                            <GeoMap changeFilePath={changeFilePath} markerProps={markerProps} />
+                            <GeoMap changeFilePath={changeFilePath} markerProps={markerProps} geoConfig={geoConfig}/>
                         </Paper>
                     </Pane>
 
