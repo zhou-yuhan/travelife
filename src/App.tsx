@@ -12,13 +12,33 @@ import 'split-pane-react/esm/themes/default.css'
 import { GeoMap } from './geomap';
 import { TripBoard } from './tripboard';
 
+
 interface TripMetaData {
+    coordinates: [number, number];
     title: string;
     date: string;
-    coordinates: [number, number];
     location: string;
     tags: string[];
     notes: string;
+}
+
+interface MarkerProps {
+    coordinates: [number, number];
+    location: string;
+    trips: Array<TripMetaData>;
+}
+
+const transformTripMeta = (tripMeta: Array<TripMetaData>): Array<MarkerProps> => {
+    // console.log("tripMeta: " + tripMeta);
+    return tripMeta.reduce((acc, trip) => {
+        const existingGroup = acc.find(group => group.coordinates[0] === trip.coordinates[0] && group.coordinates[1] === trip.coordinates[1]);
+        if (existingGroup) {
+            existingGroup.trips.push(trip);
+        } else {
+            acc.push({ coordinates: trip.coordinates, location: trip.location, trips: [trip] });
+        }
+        return acc;
+    }, [] as Array<MarkerProps>);
 }
 
 function App() {
@@ -28,15 +48,16 @@ function App() {
         '50%',
     ]);
 
-    const [tripMeta, setTripMeta] = useState<Array<TripMetaData>>([]);
+    const [markerProps, setMarkerProps] = useState<Array<MarkerProps>>(Array<MarkerProps>());
 
     useEffect(() => {
         const fetchTripMeta = async () => {
             try {
                 const response = await fetch('examples/trips.json');
-                console.log("response: " + response);
+                // console.log("response: " + response);
                 const data = await response.json();
-                setTripMeta(data);
+                const markerData = transformTripMeta(data);
+                setMarkerProps(markerData);
             } catch (error) {
                 alert("Error fetching trip JSON data: " + error);
             }
@@ -51,8 +72,7 @@ function App() {
         setFilePath(newFilePath);
     };
 
-    console.log(tripMeta);
-
+    // console.log(markerProps);
 
     return (
         <ThemeProvider theme={themeGanyu}>
@@ -76,7 +96,7 @@ function App() {
                                 justifyContent: "center",
                                 flexDirection: "column",
                             }}>
-                            <GeoMap changeFilePath={changeFilePath} tripsMeta={tripMeta}/>
+                            <GeoMap changeFilePath={changeFilePath} markerProps={markerProps} />
                         </Paper>
                     </Pane>
 

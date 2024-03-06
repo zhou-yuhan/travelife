@@ -25,5 +25,17 @@
             "Conference"
         ],
         "notes": "examples/trip2.md"
+    },
+    {
+        "title":"Escape from reality",
+        "date": "2024-01-01",
+        "coordinates": [
+            116.4074,
+            39.9042
+        ],
+        "location": "Beijing",
+        "tags": [
+            "Travel", "Relax"
+        ]
     }
 ]
