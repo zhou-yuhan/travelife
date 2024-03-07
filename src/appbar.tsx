@@ -8,6 +8,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import ExploreIcon from '@mui/icons-material/Explore';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PublicIcon from '@mui/icons-material/Public';
 import PaletteIcon from '@mui/icons-material/Palette';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -15,7 +16,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from "@mui/material/DialogActions";
-import { Button, Theme } from "@mui/material";
+import { Button, Grid, Theme, Tooltip } from "@mui/material";
 import Box from "@mui/material/Box";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -120,6 +121,13 @@ export const geoSettings: Array<GeoConfig> = [
         center: [103.8342, 36.0614], // The geometrical center of China is the city of Lanzhou, 103.8342 E, 36.0614 N
         scale: 500,
         projection: "geoMercator",
+    },
+    {
+        name: "Beijing",
+        filepath: "./beijing.json",
+        center: [116.3916, 39.9033],
+        scale: 3000,
+        projection: "geoMercator",
     }
 ]
 
@@ -179,7 +187,18 @@ function InfoDiaglog(props: InfoDiaglogProps) {
     };
     return (
         <Dialog open={infoOpen} onClose={handleClose}>
-            <DialogTitle>Travel Life</DialogTitle>
+            <Grid container>
+                <Grid item xs={10} >
+                    <DialogTitle>Travel Life</DialogTitle>
+                </Grid>
+                <Grid item xs={2} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Tooltip title="Learn more in new tab">
+                        <IconButton onClick={() => window.open("https://github.com/zhou-yuhan/travelife", "_blank")}>
+                            <OpenInNewIcon />
+                        </IconButton>
+                    </Tooltip>
+                </Grid>
+            </Grid>
             <DialogContent>
                 <DialogContentText>
                     Life itself is a journey instead of a destination, and the footprints we've walked should be preserved. Our most precious memories hide within our exploration of this vast world ... all these memories would be lost in time ... like tears ... in rain.
@@ -200,7 +219,7 @@ export interface AppBarProps {
 }
 
 
-export const Appbar = ({handleGeoConfigChange, handlePaletteConfigChange}: AppBarProps) => {
+export const Appbar = ({ handleGeoConfigChange, handlePaletteConfigChange }: AppBarProps) => {
     const classes = useStyles();
     const [infoOpen, setInfoOpen] = React.useState(false);
     const [geoOpen, setGeoOpen] = React.useState(false);
@@ -253,7 +272,7 @@ export const Appbar = ({handleGeoConfigChange, handlePaletteConfigChange}: AppBa
                 >
                     <PublicIcon />
                 </IconButton>
-                <GeoDialog open={geoOpen} onChoose={handleGeoClose} onClose={() => {setGeoOpen(false)}} />
+                <GeoDialog open={geoOpen} onChoose={handleGeoClose} onClose={() => { setGeoOpen(false) }} />
                 <IconButton
                     size="large"
                     edge="start" color="secondary"
@@ -261,7 +280,7 @@ export const Appbar = ({handleGeoConfigChange, handlePaletteConfigChange}: AppBa
                 >
                     <PaletteIcon />
                 </IconButton>
-                <PaletteDialog open={paletteOpen} onChoose={handlePaletteClose} onClose={() => {setPaletteOpen(false)}} />
+                <PaletteDialog open={paletteOpen} onChoose={handlePaletteClose} onClose={() => { setPaletteOpen(false) }} />
                 <Search>
                     <SearchIconWrapper>
                         <SearchIcon />

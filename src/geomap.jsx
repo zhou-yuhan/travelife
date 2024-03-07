@@ -124,7 +124,7 @@ const TripMarkers = ({ changeFilePath, markerProps }) => {
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            transform="translate(-12, -24)"
+                            transform={"translate(-12, -24) scale(1)"}
                             onMouseEnter={markerHover}
                             onMouseLeave={markerLeave}
                             onClick={markerClick}
@@ -144,7 +144,7 @@ export const GeoMap = ({ changeFilePath, markerProps, geoConfig }) => {
     return (
         <ComposableMap
             projection={geoConfig.projection}
-            projectionConfig={{center: geoConfig.center, scale: geoConfig.scale}}
+            projectionConfig={{ center: geoConfig.center, scale: geoConfig.scale }}
         >
             <ZoomableGroup zoom={1} maxZoom={20}>
                 <Geographies geography={geoConfig.filepath}>
