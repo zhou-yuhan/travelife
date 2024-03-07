@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/travelife/static/css/main.6569edbd.css",
+    "main.js": "/travelife/static/js/main.c10e260c.js",
+    "static/js/592.0b7b2db2.chunk.js": "/travelife/static/js/592.0b7b2db2.chunk.js",
+    "index.html": "/travelife/index.html",
+    "main.6569edbd.css.map": "/travelife/static/css/main.6569edbd.css.map",
+    "main.c10e260c.js.map": "/travelife/static/js/main.c10e260c.js.map",
+    "592.0b7b2db2.chunk.js.map": "/travelife/static/js/592.0b7b2db2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6569edbd.css",
+    "static/js/main.c10e260c.js"
+  ]
+}
