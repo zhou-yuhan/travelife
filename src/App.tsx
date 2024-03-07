@@ -56,7 +56,7 @@ function App() {
     useEffect(() => {
         const fetchTripMeta = async () => {
             try {
-                const response = await fetch('examples/trips.json');
+                const response = await fetch('trips.json');
                 // console.log("response: " + response);
                 const data = await response.json();
                 const markerData = transformTripMeta(data);
